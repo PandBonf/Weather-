@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <v-app>
+        <v-main>
+          <v-container
+            ><template>
+              <v-data-table
+                :headers="headers"
+                :items="kek"
+                hide-default-footer
+                class="elevation-1"
+              ></v-data-table> </template
+          ></v-container>
+
+          <v-btn v-on:click="getData">Обновить данные</v-btn>
+        </v-main>
+      </v-app>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+        data() {
+          return {
+            headers: [
+              {
+                text: "Дата",
+                value: "date",
+              },
+              {
+                text: "Максимальная температура",
+                value: "maxTemperature",
+              },
+              {
+                text: "Минимальная температура",
+                value: "minTemperature",
+              },
+              {
+                text: "Давление",
+                value: "pressure",
+              },
+              {
+                text: "Влажность",
+                value: "humidity",
+              },
+              {
+                text: "Сила ветра",
+                value: "windPower",
+              },
+              {
+                text: "Направление ветра",
+                value: "windDirection",
+              },
+              {
+                text: "Осадки",
+                value: "precipitation",
+              },
+            ],
+            kek: [],
+          };
+        },
+        methods: {
+          getData: function (event) {
+            axios
+              .get("https://localhost:44322/Weather")
+              .then((response) => (this.kek = response.data));
+          },
+        },
+        mounted() {
+          axios
+            .get("https://localhost:44322/Weather")
+            .then((response) => (this.kek = response.data));
+        },
+      });
+    </script>
+  </body>
+</html>

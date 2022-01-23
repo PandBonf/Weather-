@@ -23,19 +23,19 @@ namespace WebApiWeather.Controllers
                 double maxTemperature = Math.Round(random.NextDouble() * 20 + 15, 1);
                 WeatherData obj = new WeatherData()
                 {
-                    Date = DateTime.Now.AddDays(i),
+                    Date = DateTime.Now.AddDays(i).ToShortDateString(),
                     MaxTemperature = maxTemperature,
 
                     MinTemperature = Math.Round(random.NextDouble() * (maxTemperature - 5), 1),
 
                     Pressure = random.Next(740, 780),
 
-                    Humidity = random.Next(0,100),
+                    Humidity = random.Next(0, 100),
 
-                    WindPower = random.Next(0,5), 
+                    WindPower = random.Next(0, 5),
 
-                    WindDirection = GetWindDirection((WindDirectionEnum) random.Next(0, 8)),
-                    Precipitation = GetPrecipitation((PrecipitationEnum) random.Next(0, 5))
+                    WindDirection = GetWindDirection((WindDirectionEnum)random.Next(0, 8)),
+                    Precipitation = GetPrecipitation((PrecipitationEnum)random.Next(0, 5))
                 };
 
                 list.Add(obj);

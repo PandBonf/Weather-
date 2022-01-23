@@ -7,7 +7,7 @@ namespace WebApiWeather.Models
 {
     public class WeatherData
     {
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public double MaxTemperature { get; set; }
         public double MinTemperature { get; set; }
 
